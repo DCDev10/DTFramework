@@ -61,8 +61,9 @@ The project uses the following tools to ensure code quality and productivity:
   choco install cppcheck
 ### Linux (Ubuntu 22.04 LTS or equivalent)
   ```bash
-  sudo apt update
-  sudo apt install git cmake ninja-build g++-11 cppcheck 
+    sudo apt update
+    sudo apt install git cmake ninja-build g++-11 cppcheck
+  ```
 
 ## Build Instructions
 Follow these steps to build the project:
