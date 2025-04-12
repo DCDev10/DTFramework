@@ -1,0 +1,55 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  build-and-test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-22.04, windows-latest]
+        compiler: [clang, gcc, msvc]
+        exclude:
+          - os: windows-latest
+            compiler: clang
+          - os: windows-latest
+            compiler: gcc
+          - os: ubuntu-22.04
+            compiler: msvc
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Install dependencies (Ubuntu)
+      if: matrix.os == 'ubuntu-22.04'
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y clang g++ cmake ninja-build
+    - name: Configure CMake
+      run: |
+        mkdir build
+        cd build
+        cmake -G Ninja .. -DCMAKE_CXX_COMPILER=${{ matrix.compiler == 'clang' && 'clang++' || matrix.compiler == 'gcc' && 'g++' || 'cl' }}
+    - name: Build
+      run: |
+        cd build
+        cmake --build .
+    - name: Run Tests
+      run: |
+        cd build
+        ctest --output-on-failure
+    - name: Run clang-format
+      if: matrix.os == 'ubuntu-22.04'
+      run: |
+        find src tests -name '*.cpp' -o -name '*.h' | xargs clang-format --dry-run --Werror
+    - name: Run cppcheck
+      if: matrix.os == 'ubuntu-22.04'
+      run: |
+        cppcheck --enable=all --suppress=missingIncludeSystem src/ tests/
+    - name: Run clang-tidy
+      if: matrix.os == 'ubuntu-22.04'
+      run: |
+        find src tests -name '*.cpp' | xargs clang-tidy -p build/

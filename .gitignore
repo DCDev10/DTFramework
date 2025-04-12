@@ -1,0 +1,25 @@
+# .gitignore mẫu
+# Build artifacts
+build/
+bin/
+*.o
+*.obj
+*.exe
+*.pdb
+
+# IDE files
+.vscode/
+*.code-workspace
+.idea/
+*.suo
+*.user
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+*.cmake
+
+# Misc
+*.log
+*.bak
+*.swp
