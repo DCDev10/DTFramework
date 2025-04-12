@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.20)
-project(ProjectName LANGUAGES CXX)
+project(DTFramework LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -7,8 +7,11 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 # Thư mục con
 add_subdirectory(src)
-# add_subdirectory(tests)
-# add_subdirectory(demo)
+add_subdirectory(tests)
+add_subdirectory(demo)
+
+set_target_properties(project_core PROPERTIES FOLDER "Libraries")
+set_target_properties(demo_app PROPERTIES FOLDER "Applications")
 
 # Cấu hình compiler
 if (CMAKE_CXX_COMPILER_ID MATCHES "Clang|GNU")

@@ -42,13 +42,35 @@ The project uses the following tools to ensure code quality and productivity:
 - **CI/CD**: GitHub Actions for automated build, test, and code quality checks.
 - **Documentation**: Doxygen for API docs, Markdown for guides.
 
+## Install tools
+### Windows
+- **Install chocolatey (optional)**:
+  ```bash
+  Set-ExecutionPolicy Bypass -Scope Process -Force; `
+  [System.Net.ServicePointManager]::SecurityProtocol = `
+  [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; `
+  iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+- **Install Ninja, Git, CMake**:
+  ```bash
+  choco install git cmake ninja -y
+- **Install Visual Studio 2022 (includes MSVC)**:
+  ```bash
+  choco install visualstudio2022buildtools --package-parameters "--add Microsoft.VisualStudio.Workload.VCTools"
+- **Install cppcheck (for static analysis)**:
+  ```bash
+  choco install cppcheck
+### Linux (Ubuntu 22.04 LTS or equivalent)
+  ```bash
+  sudo apt update
+  sudo apt install git cmake ninja-build g++-11 cppcheck 
+
 ## Build Instructions
 Follow these steps to build the project:
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/username/RealTimeCpp.git
-   cd RealTimeCpp
+   git clone git@github.com:DCDev10/DTFramework.git
+   cd DTFramework
 2. **Create a build directory**:
     ```bash
     mkdir build && cd build
