@@ -50,14 +50,18 @@ Follow these steps to build the project:
    git clone https://github.com/username/RealTimeCpp.git
    cd RealTimeCpp
 2. **Create a build directory**:
+    ```bash
     mkdir build && cd build
 3. **Configure with CMake**:
+    ```bash
     cmake .. -DCMAKE_BUILD_TYPE=Release
     - Use -G Ninja if you have Ninja installed for faster builds.
     - For debug builds, use -DCMAKE_BUILD_TYPE=Debug.
 4. **Build the project**:
+    ```bash
     cmake --build .
 5. **Run test**:
+    ```bash
     ctest --output-on-failure
 
 ## Notes

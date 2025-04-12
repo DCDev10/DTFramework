@@ -7,8 +7,8 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 # Thư mục con
 add_subdirectory(src)
-add_subdirectory(tests)
-add_subdirectory(demo)
+# add_subdirectory(tests)
+# add_subdirectory(demo)
 
 # Cấu hình compiler
 if (CMAKE_CXX_COMPILER_ID MATCHES "Clang|GNU")

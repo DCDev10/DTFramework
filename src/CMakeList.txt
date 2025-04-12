@@ -1,9 +1,0 @@
-add_library(project_core
-    core/core.cpp
-    event_system/event_system.cpp
-    threading/threading.cpp
-    platform/platform.cpp
-    logger/logger.cpp
-)
-
-target_include_directories(project_core PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
